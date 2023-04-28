@@ -1,0 +1,500 @@
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+.warning {
+  color: red;
+}
+
+.icon-container img {
+  transition: transform 0.1s ease-out;
+  cursor: pointer;
+}
+
+.icon-container img:hover {
+  transform: translateY(-10px);
+}
+
+.small-icon {
+  height: 100px;
+  width: 100px;
+}
+.icon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px;
+}
+
+.crest-list {
+  max-width: 100%;
+  max-height: 50px;
+  transition: filter 0.9s ease;
+}
+
+.selected {
+  max-height: 100px;
+}
+.register-div {
+  background: linear-gradient(#e66465, #9198e5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.reg-form {
+  background-color: rgba(255, 255, 255, 0.5); /* white color with 50% opacity */
+}
+
+.gradient-custom-3 {
+  /* fallback for old browsers */
+  background: #84fab0;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(132, 250, 176, 0.5),
+    rgba(143, 211, 244, 0.5)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    rgba(132, 250, 176, 0.5),
+    rgba(143, 211, 244, 0.5)
+  );
+}
+
+.gradient-custom-4 {
+  /* fallback for old browsers */
+  background: #84fab0;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(132, 250, 176, 1),
+    rgba(143, 211, 244, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    rgba(132, 250, 176, 1),
+    rgba(143, 211, 244, 1)
+  );
+}
+.loading-ball {
+  text-align: center;
+}
+.loading-ball img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.err-msg {
+  text-align: center;
+  color: red;
+}
+
+.css-wb57ya-MuiFormControl-root-MuiTextField-root {
+  margin: 10px !important;
+}
+
+.team-crest {
+  height: 50px;
+  width: 50px;
+}
+
+.bg-image {
+  min-height: 100vh;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.bg-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    url("./utils/homebg.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.signin-register {
+  color: lightblue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.sign-in-error {
+  color: red;
+}
+/* NEW */
+.container {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  max-width: 600px;
+}
+
+.team-crest {
+  height: 30px;
+  max-width: 30px;
+}
+
+.list-group-item {
+  border: none;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+
+.list-group-item .row {
+  margin: 0;
+}
+
+.list-group-item .col-md-2,
+.list-group-item .col-3 {
+  padding: 0;
+}
+
+.list-group-item .col-md-4,
+.list-group-item .col-3 {
+  padding-left: 10px;
+}
+
+.competition-image {
+  width: 50px;
+  max-width: 50px;
+}
+
+.list-group-item:nth-child(even) {
+  background-color: rgba(15, 32, 40, 255);
+}
+
+.list-group-item:nth-child(odd) {
+  background-color: rgba(37, 65, 79, 255);
+}
+
+.competition-image-wrapper {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+}
+
+.blurred-box {
+  background-color: rgba(
+    33,
+    37,
+    41,
+    0.5
+  ); /* Use rgba to set the background color with transparency */
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(15px); /* Increase the blur intensity */
+}
+
+/*******************/
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 0.8rem; /* Update the font size to make the table smaller */
+}
+
+.styled-table-players {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 0.8rem; /* Update the font size to make the table smaller */
+  text-align: left;
+}
+
+.header-cell {
+  padding: 8px;
+  font-weight: bold;
+  margin-right: 10px; /* Add margin-right for spacing between headers */
+}
+
+.header-cell-team {
+  padding: 8px;
+  font-weight: bold;
+  margin-right: 10px; /* Add margin-right for spacing between headers */
+  text-align: left;
+}
+
+.team-cell {
+  padding: 8px;
+  margin-right: 40px; /* Add margin-right for spacing in team column */
+  text-align: left; /* Align text to left in team column */
+}
+
+.team-crest {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.team-crest-scorers {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+tbody td {
+  padding: 8px;
+}
+
+span {
+  margin-right: 4px; /* Add margin-right for spacing between form items */
+}
+
+span:last-child {
+  margin-right: 0; /* Remove margin-right for last form item */
+}
+
+.container-table {
+  background-color: rgba(
+    33,
+    37,
+    41,
+    0.5
+  ); /* Use rgba to set the background color with transparency */
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(15px); /* Increase the blur intensity */
+}
+
+.control-dots {
+  position: inherit !important;
+  margin-top: 5px !important;
+}
+
+/********/
+
+.fixtures-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.fixture-card {
+  background-color: #333;
+  padding: 16px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.team-crest {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+}
+
+.match-details {
+  font-size: 14px;
+}
+
+.match-date {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.carousel-control-next-icon::after {
+  visibility: hidden;
+}
+
+.carousel-control-prev-icon::after {
+  visibility: hidden;
+}
+
+.date-navigation {
+  margin-bottom: 10px;
+}
+.matchday-pick {
+  margin: 15px;
+}
+
+.matchday-pick button {
+  margin: 15px;
+}
+/* CSS */
+.button-17 {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: 0.25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform, opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #f6f9fe;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+    rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+}
+
+.home-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* CSS */
+.button-6 {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-6:hover,
+.button-6:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.button-6:hover {
+  transform: translateY(-1px);
+}
+
+.button-6:active {
+  background-color: #f0f0f1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.team-pick {
+  margin-bottom: 20px;
+}
+
+.team-crest-pick {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-crest-pick:hover {
+  transform: scale(1.5);
+}
+
+.team-crest-pick.selected {
+  height: 85px;
+  width: 85px;
+}
