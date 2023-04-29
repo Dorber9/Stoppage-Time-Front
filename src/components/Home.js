@@ -29,6 +29,8 @@ const Home = () => {
   useEffect(() => {
     setSpin(true);
     getUser(username).then((res) => {
+          console.log(res.today);
+
       const formattedMatches = res.matches.map((match) => {
         const matchId = match.id;
 
