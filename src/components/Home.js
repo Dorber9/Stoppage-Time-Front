@@ -10,7 +10,7 @@ import Results from "./Results";
 import Stats from "./Stats";
 import Card from "react-bootstrap/Card";
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "https://stoppage-time-server.herokuapp.com/";
 
 const Home = () => {
   const [username, setUsername] = useState("");
