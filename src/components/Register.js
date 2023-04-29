@@ -157,7 +157,7 @@ const Register = () => {
         .then((data) => {
           if (data.result == "success") {
             console.log("MUZABET");
-            window.location.reload();
+            window.location.href = "/user?username=" + data.username;
           } else {
             setSignError(data.result);
           }

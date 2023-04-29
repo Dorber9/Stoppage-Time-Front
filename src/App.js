@@ -27,11 +27,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={isLoggedIn ? <Home /> : <Register />}
-          ></Route>
+          <Route exact path="/" element={<Register />}></Route>
+          <Route path="/user" element={<Home />}></Route>
         </Routes>
       </BrowserRouter>
     </>

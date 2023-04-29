@@ -9,11 +9,11 @@ import Fixtures from "./Fixtures";
 import Results from "./Results";
 import Stats from "./Stats";
 import Card from "react-bootstrap/Card";
+import { useParams } from "react-router-dom";
 
 const BASE_URL = "https://stoppage-time-server.herokuapp.com/";
 
 const Home = () => {
-  const [username, setUsername] = useState("");
   const [spin, setSpin] = useState(false);
   const [matches, setMatches] = useState({ matches: [], teamCrest: [] });
   const [results, setResults] = useState({ results: [], teamCrest: [] });
@@ -22,10 +22,13 @@ const Home = () => {
   const [stats, setStats] = useState({ scorers: [], standings: [] });
   const [teamsCrest, setTeamsCrest] = useState([]);
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const username = searchParams.get("username");
+
   useEffect(() => {
     setSpin(true);
-    getUser().then((res) => {
-      setUsername(res.user.username);
+    getUser(username).then((res) => {
       const formattedMatches = res.matches.map((match) => {
         const matchId = match.id;
 
@@ -124,8 +127,8 @@ const Home = () => {
     window.location.reload();
   }
 
-  async function getUser() {
-    const response = await fetch(`${BASE_URL}user`);
+  async function getUser(username) {
+    const response = await fetch(`${BASE_URL}user/${username}`);
     const data = await response.json();
     return data;
   }
