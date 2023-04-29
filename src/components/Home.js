@@ -128,7 +128,7 @@ const Home = () => {
   }
 
   async function getUser(username) {
-    const response = await fetch(`${BASE_URL}user/${username}`);
+    const response = await fetch(`${BASE_URL}user?username=${username}`);
     const data = await response.json();
     return data;
   }
