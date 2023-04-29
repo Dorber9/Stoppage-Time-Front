@@ -3,7 +3,7 @@ import BallIcon from "../utils/ball.png";
 import { TextField } from "@mui/material";
 import { MDBBtn, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "https://stoppage-time-server.herokuapp.com/";
 
 const Register = () => {
   const [userEmail, setUserEmail] = useState("");
