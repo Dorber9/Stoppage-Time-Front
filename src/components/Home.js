@@ -96,6 +96,7 @@ const Home = () => {
         };
       });
       if (res.today != "none") {
+        console.log("GDAGASGAS");
         const date = new Date(res.today.utcDate);
         const formattedDate = `${date.getDate().toString().padStart(2, "0")}-${(
           date.getMonth() + 1
