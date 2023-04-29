@@ -95,9 +95,30 @@ const Home = () => {
           competition,
         };
       });
+      if (res.today != "none") {
+        const date = new Date(res.today.utcDate);
+        const formattedDate = `${date.getDate().toString().padStart(2, "0")}-${(
+          date.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, "0")}-${date.getFullYear()}`;
+        const formattedTime = `${date
+          .getHours()
+          .toString()
+          .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
+
+        setToday({
+          matchId: res.today.id,
+          homeTeam: res.today.homeTeam.name,
+          homeTeamCrest: res.today.homeTeam.crest,
+          awayTeam: res.today.awayTeam.name,
+          awayTeamCrest: res.today.awayTeam.crest,
+          matchday: res.today.matchday,
+          date: `${formattedDate} ${formattedTime}`,
+        });
+      }        
       setResults({ results: formattedResults, teamCrests: teamCrests });
       setMatches({ matches: formattedMatches, teamCrests: teamCrests });
-      setToday(res.today != "none" && formattedMatches[0]);
       setSpin(false);
     });
     if (page === "Stats") {
