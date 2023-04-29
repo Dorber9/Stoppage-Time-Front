@@ -9,7 +9,7 @@ import Fixtures from "./Fixtures";
 import Results from "./Results";
 import Stats from "./Stats";
 import Card from "react-bootstrap/Card";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const BASE_URL = "https://stoppage-time-server.herokuapp.com/";
 
