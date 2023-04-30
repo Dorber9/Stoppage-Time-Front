@@ -160,18 +160,18 @@ setSpin(true);
     return data;
   }
   
-  async function getUsername(){
-  await fetch(`${BASE_URL}get_username`, { credentials: 'include' })
-  .then(response => response.json())
-  .then(data => {
-    if (data.username) {
-      console.log(data.username);
-    } else {
-      console.log('Username not found in session');
-    }
-  });
-  
+async function getUsername() {
+  try {
+    const response = await fetch(`${BASE_URL}get_username`);
+    const data = await response.json();
+    console.log(data); // Log the response data to the console
+    return data.username;
+  } catch (error) {
+    console.error(error); // Log any errors to the console
+    return null;
   }
+}
+
 
   async function getStats() {
     const response = await fetch(`${BASE_URL}stats`);
