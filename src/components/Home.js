@@ -28,8 +28,8 @@ const Home = () => {
 
 
   useEffect(() => {
-  console.log(localStorage.getItem("username"));
-    setSpin(true);
+getUsername()
+setSpin(true);
     getUser(username).then((res) => {
       console.log(res.today);
       
@@ -158,6 +158,19 @@ const Home = () => {
     const response = await fetch(`${BASE_URL}user?username=${username}`);
     const data = await response.json();
     return data;
+  }
+  
+  async function getUsername(){
+  await fetch(`${BASE_URL}get_username`, { credentials: 'include' })
+  .then(response => response.json())
+  .then(data => {
+    if (data.username) {
+      console.log(data.username);
+    } else {
+      console.log('Username not found in session');
+    }
+  });
+  
   }
 
   async function getStats() {
