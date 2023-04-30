@@ -22,121 +22,105 @@ const Home = () => {
   const [stats, setStats] = useState({ scorers: [], standings: [] });
   const [teamsCrest, setTeamsCrest] = useState([]);
 
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const username = searchParams.get("username");
-
-
   useEffect(() => {
-    getUsername();
     setSpin(true);
-    getUsername().then((res) => {
-      getUser(res.username).then((res) => {
-        console.log(res.today);
+    getUser(localStorage.getItem("username")).then((res) => {
+      console.log(res.today);
 
-        const formattedMatches = res.matches.map((match) => {
-          const matchId = match.id;
+      const formattedMatches = res.matches.map((match) => {
+        const matchId = match.id;
 
-          const homeTeam = match.homeTeam.name;
-          const homeTeamCrest = match.homeTeam.crest;
-          const awayTeam = match.awayTeam.name;
-          const awayTeamCrest = match.awayTeam.crest;
-          const matchday = match.matchday;
-          const date = new Date(match.utcDate);
-          const formattedDate = `${date
-            .getDate()
-            .toString()
-            .padStart(2, "0")}-${(date.getMonth() + 1)
-            .toString()
-            .padStart(2, "0")}-${date.getFullYear()}`;
-          const formattedTime = `${date
-            .getHours()
-            .toString()
-            .padStart(2, "0")}:${date
-            .getMinutes()
-            .toString()
-            .padStart(2, "0")}`;
+        const homeTeam = match.homeTeam.name;
+        const homeTeamCrest = match.homeTeam.crest;
+        const awayTeam = match.awayTeam.name;
+        const awayTeamCrest = match.awayTeam.crest;
+        const matchday = match.matchday;
+        const date = new Date(match.utcDate);
+        const formattedDate = `${date.getDate().toString().padStart(2, "0")}-${(
+          date.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, "0")}-${date.getFullYear()}`;
+        const formattedTime = `${date
+          .getHours()
+          .toString()
+          .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
 
-          return {
-            matchId,
-            homeTeam,
-            homeTeamCrest,
-            awayTeam,
-            awayTeamCrest,
-            matchday,
-            date: `${formattedDate} ${formattedTime}`,
-          };
-        });
-
-        const teamCrests = formattedMatches.reduce((acc, match) => {
-          const { homeTeam, homeTeamCrest } = match;
-          if (!acc[homeTeam]) {
-            acc[homeTeam] = homeTeamCrest;
-          }
-          return acc;
-        }, {});
-
-        const formattedResults = res.results.map((match) => {
-          const matchId = match.id;
-          const homeTeam = match.homeTeam.name;
-          const homeTeamCrest = match.homeTeam.crest;
-          const awayTeam = match.awayTeam.name;
-          const awayTeamCrest = match.awayTeam.crest;
-          const matchday = match.matchday;
-          const score = `${match.score.fullTime.home} - ${match.score.fullTime.away}`;
-          const date = new Date(match.utcDate);
-          const competition = match.competition.emblem;
-          const formattedDate = `${date
-            .getDate()
-            .toString()
-            .padStart(2, "0")}-${(date.getMonth() + 1)
-            .toString()
-            .padStart(2, "0")}-${date.getFullYear()}`;
-
-          return {
-            matchId,
-            homeTeam,
-            homeTeamCrest,
-            awayTeam,
-            awayTeamCrest,
-            matchday,
-            score,
-            date: `${formattedDate}`,
-            competition,
-          };
-        });
-        if (res.today != "none") {
-          console.log("GDAGASGAS");
-          const date = new Date(res.today.utcDate);
-          const formattedDate = `${date
-            .getDate()
-            .toString()
-            .padStart(2, "0")}-${(date.getMonth() + 1)
-            .toString()
-            .padStart(2, "0")}-${date.getFullYear()}`;
-          const formattedTime = `${date
-            .getHours()
-            .toString()
-            .padStart(2, "0")}:${date
-            .getMinutes()
-            .toString()
-            .padStart(2, "0")}`;
-
-          setToday({
-            matchId: res.today.id,
-            homeTeam: res.today.homeTeam.name,
-            homeTeamCrest: res.today.homeTeam.crest,
-            awayTeam: res.today.awayTeam.name,
-            awayTeamCrest: res.today.awayTeam.crest,
-            matchday: res.today.matchday,
-            date: `${formattedDate} ${formattedTime}`,
-          });
-        }
-        setResults({ results: formattedResults, teamCrests: teamCrests });
-        setMatches({ matches: formattedMatches, teamCrests: teamCrests });
-        setSpin(false);
+        return {
+          matchId,
+          homeTeam,
+          homeTeamCrest,
+          awayTeam,
+          awayTeamCrest,
+          matchday,
+          date: `${formattedDate} ${formattedTime}`,
+        };
       });
+
+      const teamCrests = formattedMatches.reduce((acc, match) => {
+        const { homeTeam, homeTeamCrest } = match;
+        if (!acc[homeTeam]) {
+          acc[homeTeam] = homeTeamCrest;
+        }
+        return acc;
+      }, {});
+
+      const formattedResults = res.results.map((match) => {
+        const matchId = match.id;
+        const homeTeam = match.homeTeam.name;
+        const homeTeamCrest = match.homeTeam.crest;
+        const awayTeam = match.awayTeam.name;
+        const awayTeamCrest = match.awayTeam.crest;
+        const matchday = match.matchday;
+        const score = `${match.score.fullTime.home} - ${match.score.fullTime.away}`;
+        const date = new Date(match.utcDate);
+        const competition = match.competition.emblem;
+        const formattedDate = `${date.getDate().toString().padStart(2, "0")}-${(
+          date.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, "0")}-${date.getFullYear()}`;
+
+        return {
+          matchId,
+          homeTeam,
+          homeTeamCrest,
+          awayTeam,
+          awayTeamCrest,
+          matchday,
+          score,
+          date: `${formattedDate}`,
+          competition,
+        };
+      });
+      if (res.today != "none") {
+        console.log("GDAGASGAS");
+        const date = new Date(res.today.utcDate);
+        const formattedDate = `${date.getDate().toString().padStart(2, "0")}-${(
+          date.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, "0")}-${date.getFullYear()}`;
+        const formattedTime = `${date
+          .getHours()
+          .toString()
+          .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
+
+        setToday({
+          matchId: res.today.id,
+          homeTeam: res.today.homeTeam.name,
+          homeTeamCrest: res.today.homeTeam.crest,
+          awayTeam: res.today.awayTeam.name,
+          awayTeamCrest: res.today.awayTeam.crest,
+          matchday: res.today.matchday,
+          date: `${formattedDate} ${formattedTime}`,
+        });
+      }
+      setResults({ results: formattedResults, teamCrests: teamCrests });
+      setMatches({ matches: formattedMatches, teamCrests: teamCrests });
+      setSpin(false);
     });
+
     if (page === "Stats") {
       setSpin(true);
       getStats().then((res) => {
@@ -187,20 +171,18 @@ const Home = () => {
     const data = await response.json();
     return data;
   }
-  
-async function getUsername() {
-  try {
-    const response = await fetch(`${BASE_URL}get_username`);
-    const data = await response.json();
-    console.log(data); // Log the response data to the console
-    return data.username;
-  } catch (error) {
-    console.error(error); // Log any errors to the console
-    return null;
+
+  async function getUsername() {
+    try {
+      const response = await fetch(`${BASE_URL}get_username`);
+      const data = await response.json();
+      console.log(data); // Log the response data to the console
+      return data.username;
+    } catch (error) {
+      console.error(error); // Log any errors to the console
+      return null;
+    }
   }
-}
-
-
 
   async function getStats() {
     const response = await fetch(`${BASE_URL}stats`);
