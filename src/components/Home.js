@@ -28,7 +28,7 @@ const Home = () => {
 
 
   useEffect(() => {
-const user = getUsername();
+const user = await getUsername();
 setSpin(true);
     getUser(user).then((res) => {
       console.log(res.today);
