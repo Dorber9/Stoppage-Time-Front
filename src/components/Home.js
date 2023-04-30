@@ -30,6 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     setSpin(true);
+    console.log(usernamecookie);
     getUser(username).then((res) => {
       console.log(res.today);
       console.log(usernamecookie);
