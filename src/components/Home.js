@@ -26,10 +26,13 @@ const Home = () => {
   const searchParams = new URLSearchParams(location.search);
   const username = searchParams.get("username");
 
+  const usernamecookie = localStorage.getItem("username");
+
   useEffect(() => {
     setSpin(true);
     getUser(username).then((res) => {
-          console.log(res.today);
+      console.log(res.today);
+      console.log(usernamecookie);
 
       const formattedMatches = res.matches.map((match) => {
         const matchId = match.id;
@@ -119,7 +122,7 @@ const Home = () => {
           matchday: res.today.matchday,
           date: `${formattedDate} ${formattedTime}`,
         });
-      }        
+      }
       setResults({ results: formattedResults, teamCrests: teamCrests });
       setMatches({ matches: formattedMatches, teamCrests: teamCrests });
       setSpin(false);
@@ -144,7 +147,7 @@ const Home = () => {
         setSpin(false);
       });
     }
-  }, [page === "Stats"]);
+  }, [page, matches, results, stats]);
 
   async function logout() {
     const response = await fetch(`${BASE_URL}logout`);
