@@ -141,7 +141,7 @@ const Home = () => {
         setSpin(false);
       });
     }
-  }, [page, matches, results, stats]);
+  }, [page==='Stats']);
 
   async function logout() {
     const response = await fetch(`${BASE_URL}logout`);
