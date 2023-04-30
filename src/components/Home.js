@@ -28,10 +28,11 @@ const Home = () => {
 
 
   useEffect(() => {
+  console.log(localStorage.getItem("username"));
     setSpin(true);
     getUser(username).then((res) => {
       console.log(res.today);
-      console.log(localStorage.getItem("username"));
+      
 
       const formattedMatches = res.matches.map((match) => {
         const matchId = match.id;
