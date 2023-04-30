@@ -28,7 +28,7 @@ const Home = () => {
 
 
   useEffect(() => {
-getUsername()
+getUsername();
 setSpin(true);
     getUser(username).then((res) => {
       console.log(res.today);
@@ -171,6 +171,7 @@ async function getUsername() {
     return null;
   }
 }
+
 
 
   async function getStats() {
