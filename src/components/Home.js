@@ -21,19 +21,19 @@ const Home = () => {
   const [page, setPage] = useState("");
   const [stats, setStats] = useState({ scorers: [], standings: [] });
   const [teamsCrest, setTeamsCrest] = useState([]);
+  const [usercookie, setusercookie] = useState("");
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const username = searchParams.get("username");
 
-  const usernamecookie = localStorage.getItem("username");
 
   useEffect(() => {
     setSpin(true);
     console.log(usernamecookie);
     getUser(username).then((res) => {
       console.log(res.today);
-      console.log(usernamecookie);
+      console.log(localStorage.getItem("username"));
 
       const formattedMatches = res.matches.map((match) => {
         const matchId = match.id;
