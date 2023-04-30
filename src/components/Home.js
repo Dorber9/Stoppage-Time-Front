@@ -21,7 +21,6 @@ const Home = () => {
   const [page, setPage] = useState("");
   const [stats, setStats] = useState({ scorers: [], standings: [] });
   const [teamsCrest, setTeamsCrest] = useState([]);
-  const [usercookie, setusercookie] = useState("");
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -30,7 +29,6 @@ const Home = () => {
 
   useEffect(() => {
     setSpin(true);
-    console.log(usernamecookie);
     getUser(username).then((res) => {
       console.log(res.today);
       console.log(localStorage.getItem("username"));
