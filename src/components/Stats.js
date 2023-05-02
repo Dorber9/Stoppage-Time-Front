@@ -52,25 +52,37 @@ const Stats = ({ stats }) => {
                         <td>{stat.playedGames}</td>
                         <td>
                           {stat.form.split(",").map((formItem, index) => {
-                            let color;
+                            let borderColor;
                             switch (formItem) {
                               case "D":
-                                color = "yellow";
+                                borderColor = "yellow";
                                 break;
                               case "W":
-                                color = "limegreen";
+                                borderColor = "limegreen";
                                 break;
                               case "L":
-                                color = "red";
+                                borderColor = "red";
                                 break;
                               default:
-                                color = "inherit";
+                                borderColor = "transparent";
                                 break;
                             }
                             return (
-                              <span key={index} style={{ color }}>
+                              <span
+                                key={index}
+                                style={{
+                                  display: "inline-block",
+                                  width: "1.2em",
+                                  height: "1.2em",
+                                  borderRadius: "50%",
+                                  border: `2px solid ${borderColor}`,
+                                  backgroundColor: "white",
+                                  textAlign: "center",
+                                  lineHeight: "1.2em",
+                                  color: "white",
+                                }}
+                              >
                                 {formItem}
-                                {index < stat.form.split(",").length - 1 && " "}
                               </span>
                             );
                           })}
