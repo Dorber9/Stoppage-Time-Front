@@ -47,6 +47,19 @@ const Fixtures = ({ data }) => {
 
       // Update grouped matches with filtered matches
       setMatches(filteredGroupedMatches);
+    } else {
+      // Group filtered matches by date
+      const filteredGroupedMatches = data.matches.reduce((grouped, match) => {
+        const matchday = match.matchday;
+        if (!grouped[matchday]) {
+          grouped[matchday] = [];
+        }
+        grouped[matchday].push(match);
+        return grouped;
+      }, {});
+
+      // Update grouped matches with filtered matches
+      setMatches(filteredGroupedMatches);
     }
   }, [team, data.matches]);
 

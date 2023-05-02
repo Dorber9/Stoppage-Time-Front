@@ -94,13 +94,8 @@ const Home = () => {
         };
       });
       if (res.today != "none") {
-        console.log("GDAGASGAS");
         const date = new Date(res.today.utcDate);
-        const formattedDate = `${date.getDate().toString().padStart(2, "0")}-${(
-          date.getMonth() + 1
-        )
-          .toString()
-          .padStart(2, "0")}-${date.getFullYear()}`;
+
         const formattedTime = `${date
           .getHours()
           .toString()
@@ -113,7 +108,7 @@ const Home = () => {
           awayTeam: res.today.awayTeam.name,
           awayTeamCrest: res.today.awayTeam.crest,
           matchday: res.today.matchday,
-          date: `${formattedDate} ${formattedTime}`,
+          date: `${formattedTime}`,
         });
       }
       setResults({ results: formattedResults, teamCrests: teamCrests });
@@ -141,7 +136,7 @@ const Home = () => {
         setSpin(false);
       });
     }
-  }, [page==='Stats']);
+  }, [page === "Stats"]);
 
   async function logout() {
     const response = await fetch(`${BASE_URL}logout`);
@@ -251,13 +246,10 @@ const Home = () => {
                     />
                     {today.awayTeam}
                   </h3>
-                  <h4>{today.date}</h4>
+                  <h4>TODAY {today.date}</h4>
                 </div>
               ) : (
                 <>
-                  <div>
-                    <h3>No matches for your team today :(</h3>
-                  </div>
                   <div className="home-cards">
                     <Card style={{ width: "18rem" }} bg="dark">
                       <Card.Img variant="top" src={FixturesCard} />

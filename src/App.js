@@ -12,10 +12,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const user = Cookies.get("username");
-    if (user) {
-      setIsLoggedIn(true);
-    }
+    const user = localStorage.getItem("username");
+    setIsLoggedIn(user !== null);
   }, []);
 
   // function getCookie(name) {
@@ -27,8 +25,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Register />}></Route>
-          <Route path="/home" element={<Home />}></Route>
+          <Route
+            exact
+            path="/"
+            element={isLoggedIn ? <Home /> : <Register />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

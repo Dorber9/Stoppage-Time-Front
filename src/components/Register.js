@@ -157,7 +157,7 @@ const Register = () => {
         .then((data) => {
           if (data.result == "success") {
             localStorage.setItem("username", data.username);
-            window.location.href = "/home";
+            window.location.reload();
           } else {
             setSignError(data.result);
           }
