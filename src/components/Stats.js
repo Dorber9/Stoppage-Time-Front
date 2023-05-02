@@ -52,19 +52,19 @@ const Stats = ({ stats }) => {
                         <td>{stat.playedGames}</td>
                         <td>
                           {stat.form.split(",").map((formItem, index) => {
-                            let borderColor;
+                            let color;
                             switch (formItem) {
                               case "D":
-                                borderColor = "yellow";
+                                color = "yellow";
                                 break;
                               case "W":
-                                borderColor = "limegreen";
+                                color = "limegreen";
                                 break;
                               case "L":
-                                borderColor = "red";
+                                color = "red";
                                 break;
                               default:
-                                borderColor = "transparent";
+                                color = "transparent";
                                 break;
                             }
                             return (
@@ -75,8 +75,7 @@ const Stats = ({ stats }) => {
                                   width: "1.2em",
                                   height: "1.2em",
                                   borderRadius: "50%",
-                                  border: `2px solid ${borderColor}`,
-                                  backgroundColor: "white",
+                                  backgroundColor: color,
                                   textAlign: "center",
                                   lineHeight: "1.2em",
                                   color: "white",
