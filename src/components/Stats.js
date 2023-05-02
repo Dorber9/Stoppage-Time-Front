@@ -55,7 +55,7 @@ const Stats = ({ stats }) => {
                             let color;
                             switch (formItem) {
                               case "D":
-                                color = "yellow";
+                                color = "#ffd700";
                                 break;
                               case "W":
                                 color = "limegreen";
