@@ -157,7 +157,7 @@ const Home = () => {
   }
 
   async function logout() {
-    const response = await fetch(`${BASE_URL}logout`);
+    localStorage.removeItem('username');
     window.location.reload();
   }
 
