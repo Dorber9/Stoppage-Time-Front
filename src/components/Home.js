@@ -11,7 +11,7 @@ import Stats from "./Stats";
 import Card from "react-bootstrap/Card";
 import { useLocation } from "react-router-dom";
 
-const BASE_URL = "https://stoppage-time-server.herokuapp.com/";
+const BASE_URL = "https://stoppage-time-server.vercel.app/";
 
 const Home = () => {
   const [spin, setSpin] = useState(false);
