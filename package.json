@@ -1,5 +1,4 @@
 {
-  "homepage": "https://dorber9.github.io/Stoppage-Time-Front"
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -35,8 +34,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "npm run build",
     "build": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
