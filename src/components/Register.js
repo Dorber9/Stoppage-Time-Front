@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import { MDBBtn, MDBContainer, MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 import Cookies from "js-cookie";
 
-const BASE_URL = "https://stoppage-time-server.herokuapp.com/";
+const BASE_URL = "https://stoppage-time-server.vercel.app/";
 
 const Register = () => {
   const [userEmail, setUserEmail] = useState("");
