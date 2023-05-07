@@ -504,6 +504,6 @@ span:last-child {
   width: 85px;
 }
 
-.reg-form{
-  margin: 10px;
+.reg-form input{
+  margin: 10px !important;
 }
