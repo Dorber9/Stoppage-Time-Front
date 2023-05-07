@@ -25,8 +25,6 @@ const Home = () => {
   useEffect(() => {
     setSpin(true);
     getUser(localStorage.getItem("username")).then((res) => {
-      console.log(res.today);
-
       const formattedMatches = res.matches.map((match) => {
         const matchId = match.id;
 
@@ -144,46 +142,40 @@ const Home = () => {
   }
 
   async function getUser(username) {
-    const response = await fetch(`${BASE_URL}user?username=${username}`);
-    const data = await response.json();
-    return data;
-  }
-
-  async function getStats() {
-    const response = await fetch(`${BASE_URL}stats`);
-    const data = await response.json();
-
-    return data;
-  }
-
-  async function logout() {
-    localStorage.removeItem('username');
-    window.location.reload();
-  }
-
-  async function getUser(username) {
-    const response = await fetch(`${BASE_URL}user?username=${username}`);
-    const data = await response.json();
-    return data;
-  }
-
-  async function getUsername() {
     try {
-      const response = await fetch(`${BASE_URL}get_username`);
+      const response = await fetch(`${BASE_URL}user?username=${username}`);
       const data = await response.json();
-      console.log(data); // Log the response data to the console
-      return data.username;
+
+      if ("error" in data) {
+        alert(data.message);
+        window.location.reload(); // Reload the page
+      }
+
+      return data;
     } catch (error) {
-      console.error(error); // Log any errors to the console
-      return null;
+      console.error(error);
     }
   }
 
   async function getStats() {
-    const response = await fetch(`${BASE_URL}stats`);
-    const data = await response.json();
+    try {
+      const response = await fetch(`${BASE_URL}stats`);
+      const data = await response.json();
 
-    return data;
+      if ("error" in data) {
+        alert(data.message);
+        window.location.reload(); // Reload the page
+      }
+
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function logout() {
+    localStorage.removeItem("username");
+    window.location.reload();
   }
 
   return (

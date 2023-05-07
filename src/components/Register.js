@@ -24,7 +24,12 @@ const Register = () => {
     fetch(`${BASE_URL}clubs`)
       .then((response) => response.json())
       .then((clubs) => {
-        setClubs(clubs);
+        if ("error" in clubs) {
+          alert(clubs.message);
+          window.location.reload(); // Reload the page
+        } else {
+          setClubs(clubs);
+        }
       })
       .catch((error) => console.error(error));
   }, []);
@@ -64,12 +69,6 @@ const Register = () => {
 
   async function handleCheckUserName() {
     if (username.length > 2 && username.length < 16) {
-      // let exists = await checkUserNameExists(username);
-      // if (!exists) {
-      //   setUsernameValid("");
-      // } else {
-      //   setUsernameValid("Username already exists");
-      // }
     } else {
       setUsernameValid("Username must be 3-15 characters");
     }
@@ -190,8 +189,8 @@ const Register = () => {
     >
       <div className="mask gradient-custom-3"></div>
       <MDBCard className="m-5" style={{ maxWidth: "600px" }}>
-        <MDBCardBody className="px-5">
-          {page == "Register" ? (
+        <MDBCardBody className="reg-form">
+          {page == "Register" && clubs ? (
             <>
               <TextField
                 id="username"
@@ -311,141 +310,5 @@ const Register = () => {
     </MDBContainer>
   );
 };
-//   return (
-//     <div className="register-div">
-//       <div className="reg-form">
-//         <form method="POST" onSubmit={submitForm}>
-//           {activeStep === 1 ? (
-//             <div>
-//               <MDBInput
-//                 wrapperClass="mb-4"
-//                 label="Your Name"
-//                 size="lg"
-//                 id="form1"
-//                 type="text"
-//               />
-
-// <TextField
-//   id="email"
-//   label="Email"
-//   variant="outlined"
-//   value={userEmail}
-//   onChange={handleEmailChange}
-//   helperText={emailValid !== "Valid" ? emailValid : emailExists}
-//   error={emailValid !== "Valid" || emailExists}
-// />
-//               {emailValid === "Valid" && (
-//                 <div>
-//                   <button
-//                     type="button"
-//                     className="next-button"
-//                     onClick={handleCheckEmail}
-//                   >
-//                     NEXT
-//                   </button>
-//                 </div>
-//               )}
-//             </div>
-//           ) : activeStep === 2 ? (
-//             <div>
-// <TextField
-//   id="username"
-//   label="Username"
-//   variant="outlined"
-//   value={username}
-//   onChange={handleUsernameChange}
-//   helperText={usernameValid !== "Valid" && usernameValid}
-//   error={usernameValid !== "Valid"}
-// />
-//               {usernameValid === "Valid" && (
-//                 <div>
-//                   <button
-//                     type="button"
-//                     className="next-button"
-//                     onClick={handleCheckUserName}
-//                   >
-//                     NEXT
-//                   </button>
-//                 </div>
-//               )}
-//             </div>
-//           ) : activeStep === 3 ? (
-//             <div>
-// <TextField
-//   id="password"
-//   label="Password"
-//   variant="outlined"
-//   type="password"
-//   value={password}
-//   onChange={handlePasswordChange}
-//   helperText={passwordValid !== "Valid" && passwordValid}
-//   error={passwordValid !== "Valid"}
-// />
-
-// <TextField
-//   id="passwordConf"
-//   label="Password Confirmation"
-//   variant="outlined"
-//   type="password"
-//   value={passwordConf}
-//   onChange={handlePasswordConfChange}
-//   error={passwordValid !== "Valid"}
-// />
-//               {passwordValid === "Valid" && (
-//                 <div>
-//                   <button
-//                     type="button"
-//                     className="next-button"
-//                     onClick={finalCheck}
-//                     disabled={passwordValid != "Valid"}
-//                   >
-//                     NEXT
-//                   </button>
-//                 </div>
-//               )}
-//               {passwordValid !== "Valid" && (
-//                 <div className="password-msg">
-//                   <PasswordMessage password={password} />
-//                 </div>
-//               )}
-//             </div>
-//           ) : (
-//             <>
-// {selectedClub != null ? (
-//   <h2>
-//     I am a
-//     <img className="small-icon" src={clubs[selectedClub]}></img>
-//     fan
-//   </h2>
-// ) : (
-//   <h2>Choose your club</h2>
-// )}
-// <div className="icon-container">
-//   {Object.keys(clubs).map((key) => (
-//     <img
-//       key={key}
-//       src={clubs[key]}
-//       onClick={() => setSelectedClub(key)}
-//       className="crest-list"
-//     />
-//   ))}
-// </div>
-//               <button
-//                 type="submit"
-//                 onClick={submitForm}
-//                 disabled={selectedClub == null}
-//               >
-//                 SUBMIT
-//               </button>
-//             </>
-//           )}
-
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Register;
 
 export default Register;
