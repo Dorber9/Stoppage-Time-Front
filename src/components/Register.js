@@ -189,7 +189,7 @@ const Register = () => {
     >
       <div className="mask gradient-custom-3"></div>
       <MDBCard className="m-5" style={{ maxWidth: "600px" }}>
-        <MDBCardBody className="reg-form">
+        <MDBCardBody className="reg-form textfield-container">
           {page == "Register" && clubs ? (
             <>
               <TextField

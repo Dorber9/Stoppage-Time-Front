@@ -504,3 +504,8 @@ span:last-child {
   width: 85px;
 }
 
+.textfield-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjust the value as per your desired spacing */
+}
