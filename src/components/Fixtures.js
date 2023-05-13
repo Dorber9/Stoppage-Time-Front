@@ -5,6 +5,10 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import LaLigaIcon from "../utils/laliga.png";
+import Modal from "react-modal";
+
+const BASE_URL = "https://stoppage-time-server.vercel.app/";
+Modal.setAppElement("#root");
 
 const Fixtures = ({ data }) => {
   // Group matches by date
@@ -70,105 +74,118 @@ const Fixtures = ({ data }) => {
 
   return (
     <div className="container">
-      <div className="team-pick">
-        <img
-          key="empty-team"
-          id="empty-team"
-          className={`team-crest-pick ${!team ? "selected" : ""}`}
-          src={LaLigaIcon}
-          alt="Empty Team"
-          onClick={() => setTeam("")}
-        />
-        {Object.entries(data.teamCrests).map(([teamName, teamCrest]) => (
+      {matches ? (
+        <div className="team-pick">
           <img
-            key={teamName}
-            id={teamName}
-            className={`team-crest-pick ${team === teamName ? "selected" : ""}`}
-            src={teamCrest}
-            alt={teamName}
-            onClick={() => setTeam(teamName)}
+            key="empty-team"
+            id="empty-team"
+            className={`team-crest-pick ${!team ? "selected" : ""}`}
+            src={LaLigaIcon}
+            alt="Empty Team"
+            onClick={() => setTeam("")}
           />
-        ))}
-      </div>
-      <div className="matchday-pick">
-        {/* Back button */}
-        {matchdays.indexOf(currentMatchday) > 0 && (
-          <button
-            className="button-17 mr-auto"
-            onClick={() =>
-              handleMatchdayNavigation(
-                matchdays[matchdays.indexOf(currentMatchday) - 1]
-              )
-            }
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-            &nbsp; Matchday {matchdays[matchdays.indexOf(currentMatchday) - 1]}
-          </button>
-        )}
-        {/* Forward button */}
-        {matchdays.indexOf(currentMatchday) < matchdays.length - 1 && (
-          <button
-            className="button-17 ml-auto"
-            onClick={() =>
-              handleMatchdayNavigation(
-                matchdays[matchdays.indexOf(currentMatchday) + 1]
-              )
-            }
-          >
-            Matchday {matchdays[matchdays.indexOf(currentMatchday) + 1]} &nbsp;
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-        )}
-      </div>
+          {Object.entries(data.teamCrests).map(([teamName, teamCrest]) => (
+            <img
+              key={teamName}
+              id={teamName}
+              className={`team-crest-pick ${
+                team === teamName ? "selected" : ""
+              }`}
+              src={teamCrest}
+              alt={teamName}
+              onClick={() => setTeam(teamName)}
+            />
+          ))}
+        </div>
+      ) : (
+        ""
+      )}
+      {matches ? (
+        <div className="matchday-pick">
+          {/* Back button */}
+          {matchdays.indexOf(currentMatchday) > 0 && (
+            <button
+              className="button-17 mr-auto"
+              onClick={() =>
+                handleMatchdayNavigation(
+                  matchdays[matchdays.indexOf(currentMatchday) - 1]
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+              &nbsp; Matchday{" "}
+              {matchdays[matchdays.indexOf(currentMatchday) - 1]}
+            </button>
+          )}
+          {/* Forward button */}
+          {matchdays.indexOf(currentMatchday) < matchdays.length - 1 && (
+            <button
+              className="button-17 ml-auto"
+              onClick={() =>
+                handleMatchdayNavigation(
+                  matchdays[matchdays.indexOf(currentMatchday) + 1]
+                )
+              }
+            >
+              Matchday {matchdays[matchdays.indexOf(currentMatchday) + 1]}{" "}
+              &nbsp;
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          )}
+        </div>
+      ) : (
+        ""
+      )}
 
       {/* Display matches for current date */}
-      <ul className="list-group list-group-sm">
-        {matches[currentMatchday].map((match, index) => (
-          <li key={match.matchId} className="list-group-item">
-            <div className="row align-items-center">
-              <div className="col-md-2 col-3">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    className="team-crest mb-2"
-                    src={match.homeTeamCrest}
-                    alt={match.homeTeam}
-                  />
-                  <span className="text-white text-center">
-                    {match.homeTeam}
-                  </span>
-                </div>
-              </div>
-              <div className="col-md-2 col-3">
-                <p className="text-white text-center mb-0">{match.score}</p>
-              </div>
-              <div className="col-md-2 col-3">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    className="team-crest mb-2"
-                    src={match.awayTeamCrest}
-                    alt={match.awayTeam}
-                  />
-                  <span className="text-white text-center">
-                    {match.awayTeam}
-                  </span>
-                </div>
-              </div>
-              <div className="col-md-2 col-3">
-                <div className="d-flex flex-column align-items-center">
-                  <div>
+      {matches ? (
+        <ul className="list-group list-group-sm">
+          {matches[currentMatchday].map((match, index) => (
+            <li key={match.matchId} className="list-group-item">
+              <div className="row align-items-center">
+                <div className="col-md-2 col-3">
+                  <div className="d-flex flex-column align-items-center">
+                    <img
+                      className="team-crest mb-2"
+                      src={match.homeTeamCrest}
+                      alt={match.homeTeam}
+                    />
                     <span className="text-white text-center">
-                      Matchday {match.matchday}
+                      {match.homeTeam}
                     </span>
                   </div>
                 </div>
+                <div className="col-md-2 col-3">
+                  <div className="d-flex flex-column align-items-center">
+                    <img
+                      className="team-crest mb-2"
+                      src={match.awayTeamCrest}
+                      alt={match.awayTeam}
+                    />
+                    <span className="text-white text-center">
+                      {match.awayTeam}
+                    </span>
+                  </div>
+                </div>
+                <div className="col-md-2 col-3">
+                  <div className="d-flex flex-column align-items-center">
+                    <div>
+                      <span className="text-white text-center">
+                        Matchday {match.matchday}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-3 col-2">
+                  <p className="text-white text-center mb-0">{match.date}</p>
+                </div>
               </div>
-              <div className="col-md-3 col-2">
-                <p className="text-white text-center mb-0">{match.date}</p>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h2>No More Games! See you next season</h2>
+      )}
     </div>
   );
 };
